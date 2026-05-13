@@ -1,6 +1,8 @@
 # ── Stage 1: build the Go binary ────────────────────────────────────────────
 FROM golang:1.24-bookworm AS builder
 
+ENV GOTOOLCHAIN=auto
+
 WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download
