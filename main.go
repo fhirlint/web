@@ -9,8 +9,6 @@ import (
 	"os"
 	"regexp"
 	"strconv"
-	"time"
-
 	"github.com/fhirlint/fhirlint/pkg/fhirlint"
 )
 
@@ -98,7 +96,6 @@ func handleValidate(w http.ResponseWriter, r *http.Request) {
 		Profiles:            req.Profiles,
 		IGs:                 req.IGs,
 		NoTerminologyServer: req.NoTerminologyServer,
-		Timeout:             5 * time.Minute,
 	}
 
 	result, err := fhirlint.Validate([]byte(req.Content), opts)
