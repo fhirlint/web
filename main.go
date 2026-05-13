@@ -9,6 +9,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"time"
 	"github.com/fhirlint/fhirlint/pkg/fhirlint"
 )
 
@@ -60,8 +61,13 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+	srv := &http.Server{
+		Addr:              ":" + port,
+		Handler:           mux,
+		ReadHeaderTimeout: 10 * time.Second,
+	}
 	log.Printf("fhirlint web listening on :%s", port)
-	log.Fatal(http.ListenAndServe(":"+port, mux))
+	log.Fatal(srv.ListenAndServe())
 }
 
 func handleValidate(w http.ResponseWriter, r *http.Request) {
