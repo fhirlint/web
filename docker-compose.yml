@@ -1,0 +1,14 @@
+services:
+  fhirlint-web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+    volumes:
+      # Persist the downloaded validator JAR across restarts
+      - fhirlint-cache:/home/app/.fhirlint
+    restart: unless-stopped
+
+volumes:
+  fhirlint-cache:

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fhirlint — FHIR Validator</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <span class="logo">fhirlint</span>
+      <span class="tagline">FHIR Validator</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <!-- Left column: editor + options -->
+      <div class="editor-col">
+        <div class="editor-toolbar">
+          <div class="toolbar-left">
+            <label class="btn btn-secondary" title="Upload a FHIR file">
+              Upload
+              <input type="file" id="fileInput" accept=".json,.xml" hidden>
+            </label>
+            <select id="formatSelect" title="Input format">
+              <option value="json">JSON</option>
+              <option value="xml">XML</option>
+            </select>
+          </div>
+          <button id="validateBtn" class="btn btn-primary">Validate</button>
+        </div>
+
+        <div id="editor" class="editor-container"></div>
+
+        <details class="options-panel">
+          <summary>Options</summary>
+          <div class="options-grid">
+            <div class="option-group">
+              <label for="fhirVersion">FHIR Version</label>
+              <select id="fhirVersion">
+                <option value="4.0.1" selected>R4 (4.0.1)</option>
+                <option value="4.3.0">R4B (4.3.0)</option>
+                <option value="5.0.0">R5 (5.0.0)</option>
+              </select>
+            </div>
+            <div class="option-group">
+              <label for="profilesInput">Profiles (one per line)</label>
+              <textarea id="profilesInput" rows="3" placeholder="http://hl7.org/fhir/StructureDefinition/Patient&#10;..."></textarea>
+            </div>
+            <div class="option-group">
+              <label for="igsInput">IGs (package#version, one per line)</label>
+              <textarea id="igsInput" rows="3" placeholder="de.basisprofil.r4#1.5.0&#10;..."></textarea>
+            </div>
+            <div class="option-group option-check">
+              <label>
+                <input type="checkbox" id="noTerminology">
+                No terminology server
+              </label>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Right column: results -->
+      <div class="results-col">
+        <div class="results-header">
+          <span class="results-title">Results</span>
+          <div id="summaryBadges" class="summary-badges hidden"></div>
+        </div>
+
+        <div id="resultsPane" class="results-pane">
+          <div class="results-empty">Paste or upload a FHIR resource and click <strong>Validate</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js" crossorigin="anonymous"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
