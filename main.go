@@ -66,7 +66,7 @@ func main() {
 		Handler:           mux,
 		ReadHeaderTimeout: 10 * time.Second,
 	}
-	log.Printf("fhirlint web listening on :%s", port)
+	log.Printf("fhirlint web listening on :%s", port) //nolint:gosec // G706: port is a trusted env var, not user input
 	log.Fatal(srv.ListenAndServe())
 }
 
@@ -137,11 +137,11 @@ func handleValidate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(resp) //nolint:errcheck
+	json.NewEncoder(w).Encode(resp) //nolint:errcheck,gosec // G104: response write errors are not actionable
 }
 
 func jsonError(w http.ResponseWriter, msg string, status int) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(map[string]string{"error": msg}) //nolint:errcheck
+	json.NewEncoder(w).Encode(map[string]string{"error": msg}) //nolint:errcheck,gosec // G104: response write errors are not actionable
 }

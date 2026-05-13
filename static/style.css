@@ -249,7 +249,7 @@ select {
 
 .issue-icon { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
 .issue-body { flex: 1; min-width: 0; }
-.issue-message { font-size: 13px; word-break: break-word; }
+.issue-message { font-size: 13px; overflow-wrap: break-word; }
 .issue-meta { margin-top: 3px; font-size: 11px; color: var(--text-dim); display: flex; gap: 8px; flex-wrap: wrap; }
 .issue-location { font-family: monospace; }
 .issue-id { opacity: 0.7; }
