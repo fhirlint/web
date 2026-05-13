@@ -5,7 +5,8 @@
   --border: #3e3e42;
   --text: #ccc;
   --text-dim: #888;
-  --accent: #0e90d2;
+  --accent: #30c0e0;
+  --accent2: #f07830;
   --error: #f44747;
   --warning: #cca700;
   --info: #4e9a06;
@@ -95,7 +96,7 @@ main {
 .btn:hover { opacity: 0.85; }
 .btn:disabled { opacity: 0.4; cursor: default; }
 
-.btn-primary { background: var(--accent); color: #fff; font-weight: 600; }
+.btn-primary { background: var(--accent2); color: #fff; font-weight: 600; }
 
 .btn-secondary {
   background: var(--bg3);
