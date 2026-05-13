@@ -34,10 +34,10 @@ header {
   flex-shrink: 0;
 }
 
-.header-inner { display: flex; align-items: baseline; gap: 10px; }
+.header-inner { display: flex; align-items: center; gap: 10px; }
 
 .header-logo {
-  height: 32px;
+  height: 36px;
   width: auto;
 }
 
