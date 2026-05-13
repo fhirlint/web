@@ -9,8 +9,8 @@ linters:
     - gosec
     - nolintlint
 
-issues:
-  exclude-rules:
+exclusions:
+  rules:
     - path: _test\.go
       linters:
         - gosec
