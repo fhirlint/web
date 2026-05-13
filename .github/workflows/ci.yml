@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  GOTOOLCHAIN: auto
+
+jobs:
+  # ── Go: unit tests ──────────────────────────────────────────────────────────
+  test:
+    name: Go tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go test ./...
+
+  # ── Go: lint ────────────────────────────────────────────────────────────────
+  go-lint:
+    name: Go lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          install-mode: goinstall
+
+  # ── Go: vulnerability scan ──────────────────────────────────────────────────
+  go-security:
+    name: Go security (govulncheck)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go install golang.org/x/vuln/cmd/govulncheck@latest
+      - run: govulncheck ./...
+
+  # ── Node: lint (ESLint + Stylelint + HTMLHint) ──────────────────────────────
+  node-lint:
+    name: Node lint (ESLint / Stylelint / HTMLHint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npx eslint static/app.js
+      - run: npx stylelint static/style.css
+      - run: npx htmlhint static/index.html
+
+  # ── Node: security (audit + signatures + lockfile-lint) ─────────────────────
+  node-security:
+    name: Node security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - run: npm audit signatures
+      - run: npx lockfile-lint --path package-lock.json --type npm --allowed-hosts npm
+
+  # ── Trivy: filesystem + Docker image scan ───────────────────────────────────
+  trivy:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trivy — filesystem (Go modules + npm packages)
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          format: table
+
+      - name: Build Docker image
+        run: docker build -t fhirlint-web .
+
+      - name: Trivy — Docker image (OS packages + Java)
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: image
+          image-ref: fhirlint-web
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          format: table

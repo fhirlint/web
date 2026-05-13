@@ -1,0 +1,14 @@
+{
+  "name": "fhirlint-web",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "htmlhint": "^1.1.4",
+    "lockfile-lint": "^4.14.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}
