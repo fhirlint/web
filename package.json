@@ -8,7 +8,7 @@
     "globals": "^17.6.0",
     "htmlhint": "^1.1.4",
     "lockfile-lint": "^4.14.0",
-    "stylelint": "^17.11.0",
+    "stylelint": "^17.11.1",
     "stylelint-config-standard": "^40.0.0"
   }
 }
