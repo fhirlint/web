@@ -1,5 +1,5 @@
 # ── Stage 1: build the Go binary ────────────────────────────────────────────
-FROM golang:1.24-bookworm AS builder
+FROM golang:1.25-bookworm AS builder
 
 ENV GOTOOLCHAIN=auto
 
