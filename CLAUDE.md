@@ -10,7 +10,7 @@ static/
   index.html     App shell (Monaco via CDN, options panel, results panel)
   style.css      Dark theme, CSS variables, responsive layout
   app.js         Monaco setup, fetch /api/validate, inline markers, file upload
-Dockerfile       golang:1.24 builder → eclipse-temurin:21-jre runtime
+Dockerfile       golang:1.25 builder → eclipse-temurin:21-jre runtime
 docker-compose.yml
 ```
 
