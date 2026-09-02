@@ -1,2 +1,10 @@
-github.com/fhirlint/fhirlint v1.4.0 h1:9wYNPcV5TxWBkkkIS+atr2OhnLxCsTGgcySMU0S0TdA=
-github.com/fhirlint/fhirlint v1.4.0/go.mod h1:ut1KP1og4A4SmN/WvdIuaCgl2owOILd+7XFaq79L54o=
+github.com/ProtonMail/go-crypto v1.4.1 h1:9RfcZHqEQUvP8RzecWEUafnZVtEvrBVL9BiF67IQOfM=
+github.com/ProtonMail/go-crypto v1.4.1/go.mod h1:e1OaTyu5SYVrO9gKOEhTc+5UcXtTUa+P3uLudwcgPqo=
+github.com/cloudflare/circl v1.6.3 h1:9GPOhQGF9MCYUeXyMYlqTR6a5gTrgR/fBLXvUgtVcg8=
+github.com/cloudflare/circl v1.6.3/go.mod h1:2eXP6Qfat4O/Yhh8BznvKnJ+uzEoTQ6jVKJRn81BiS4=
+github.com/fhirlint/fhirlint v1.10.0 h1:paej9EdkNmeX/vHNPE/qxbbKuRLvMpwFFufCrOFum30=
+github.com/fhirlint/fhirlint v1.10.0/go.mod h1:uK04AnmPf/tcQzAsWPDPY4S+hkfKXdK24NGLr6zmPlI=
+golang.org/x/crypto v0.55.0 h1:+KWHjbgOaAQ66dh/YlkZKHlz9ZUlq61AFirAR9ntP8M=
+golang.org/x/crypto v0.55.0/go.mod h1:uq0V9dE/fzQuJtbnL+2EhWOE63vo164FY8xqEnV9xis=
+golang.org/x/sys v0.47.0 h1:o7XGOvZQCADBQQ4Y7VNq2dRWQR7JmOUW8Kxx4ZsNgWs=
+golang.org/x/sys v0.47.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=
